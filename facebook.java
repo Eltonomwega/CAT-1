@@ -29,6 +29,9 @@ import javafx.scene.layout.VBox;
 import java.util.logging.Level;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Background;
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 public class facebook extends Application {
   private static final Logger LOGGER = Logger.getLogger(facebook.class.getName());
@@ -48,6 +51,7 @@ public class facebook extends Application {
     GridPane gridPane, gridpane2, gridpane3;
     TextField emailPhoneField;
     Text emailPhone, pass, connect;
+    Button signUp;
     try {
       logoimage = new Image("facebooklogo.png");
 
@@ -63,6 +67,8 @@ public class facebook extends Application {
       pass = new Text("Password");
       connect = new Text("Connect with friends and the world around you on Facebook.");
       emailPhoneField = new TextField();
+      signUp = new Button("Create Account");
+      signUp.setStyle("-fx-background-color: green; -fx-text-fill: white;");
       PasswordField passField = new PasswordField();
       toolBar
           .setBackground(new Background(new BackgroundFill(Color.rgb(61, 92, 154), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -71,7 +77,7 @@ public class facebook extends Application {
       gridPane.setVgap(3);
       gridPane.setHgap(5);
       gridPane.add(emailPhone, 0, 0);
-      gridPane.setMargin(emailPhone,new Insets(0, 4, 0, 20));
+      gridPane.setMargin(emailPhone, new Insets(0, 4, 0, 20));
       gridPane.add(emailPhoneField, 0, 1);
       gridPane.add(pass, 1, 0);
       gridPane.add(passField, 1, 1);
@@ -83,13 +89,25 @@ public class facebook extends Application {
       vBox.setBackground(new Background(new BackgroundFill(Color.rgb(237, 240, 249), CornerRadii.EMPTY, Insets.EMPTY)));
       connect.setStyle("-fx-font:normal bold 20px 'serif' ");
 
+      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+
+        @Override
+        public void handle(MouseEvent e) {
+          vBox.setBackground(
+              new Background(new BackgroundFill(Color.rgb(32, 56, 100), CornerRadii.EMPTY, Insets.EMPTY)));
+          connect.setText("Thank you for registering to facebook Application");
+        }
+      };
+      signUp.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
       gridpane2 = new GridPane();
       gridpane2.setAlignment(Pos.CENTER);
       gridpane2.setMinSize(25, 40);
       gridpane2.setVgap(3);
       gridpane2.setHgap(5);
       gridpane2.add(connect, 0, 0);
+      gridpane2.add(signUp, 0, 1);
       // vBox.getChildren().add(toolBar)
+
       vBox.getChildren().add(toolBar);
       vBox.getChildren().add(gridpane2);
 
