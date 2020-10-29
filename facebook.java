@@ -45,6 +45,9 @@ public class facebook extends Application {
     // create image
     Image logoimage;
     ImageView logo;
+    GridPane gridPane, gridpane2, gridpane3;
+    TextField emailPhoneField;
+    Text emailPhone, pass, connect;
     try {
       logoimage = new Image("facebooklogo.png");
 
@@ -52,24 +55,48 @@ public class facebook extends Application {
       logo.setX(0);
       logo.setY(920);
       // setting the fit height and width of the image view
-      logo.setFitHeight(50);
+      logo.setFitHeight(60);
       logo.setFitWidth(100);
       logo.setPreserveRatio(true);
 
-      Text emailPhone = new Text("Email or Phone");
-      Text pass = new Text("Password");
-
-      TextField emailPhoneField = new TextField();
+      emailPhone = new Text("Email or Phone");
+      pass = new Text("Password");
+      connect = new Text("Connect with friends and the world around you on Facebook.");
+      emailPhoneField = new TextField();
       PasswordField passField = new PasswordField();
-      toolBar.setMinHeight(60);
-
       toolBar
           .setBackground(new Background(new BackgroundFill(Color.rgb(61, 92, 154), CornerRadii.EMPTY, Insets.EMPTY)));
+      gridPane = new GridPane();
+      gridPane.setAlignment(Pos.CENTER);
+      gridPane.setVgap(3);
+      gridPane.setHgap(5);
+      gridPane.add(emailPhone, 0, 0);
+      gridPane.setMargin(emailPhone,new Insets(0, 4, 0, 20));
+      gridPane.add(emailPhoneField, 0, 1);
+      gridPane.add(pass, 1, 0);
+      gridPane.add(passField, 1, 1);
+
       toolBar.getItems().add(logo);
-      VBox vBox = new VBox(toolBar);
-      Scene scene = new Scene(vBox, 500, 500);
-      // toolBar.setFill("#3d5c9a");
-      stage.setTitle("My First JavaFX GUI");
+      toolBar.getItems().add(gridPane);
+      toolBar.setMinHeight(100);
+      VBox vBox = new VBox();
+      vBox.setBackground(new Background(new BackgroundFill(Color.rgb(237, 240, 249), CornerRadii.EMPTY, Insets.EMPTY)));
+      connect.setStyle("-fx-font:normal bold 20px 'serif' ");
+
+      gridpane2 = new GridPane();
+      gridpane2.setAlignment(Pos.CENTER);
+      gridpane2.setMinSize(25, 40);
+      gridpane2.setVgap(3);
+      gridpane2.setHgap(5);
+      gridpane2.add(connect, 0, 0);
+      // vBox.getChildren().add(toolBar)
+      vBox.getChildren().add(toolBar);
+      vBox.getChildren().add(gridpane2);
+
+      Scene scene = new Scene(vBox, 600, 500);
+      stage.setTitle("My First");
+
+      // left of toolbar
 
       stage.setScene(scene);
 
